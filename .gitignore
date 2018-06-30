@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Java template
+# Compiled class file
+*.class
+
+### Maven template
+target/
