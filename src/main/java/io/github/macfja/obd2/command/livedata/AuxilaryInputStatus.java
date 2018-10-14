@@ -24,7 +24,7 @@ import io.github.macfja.obd2.command.LiveCommand;
 import io.github.macfja.obd2.response.AuxilaryInputResponse;
 
 /**
- * <p>This class is the OBD-II command for "01 1E" (Mode 01, PID 0x1E).</p>
+ * <p>This class is the OBD-II command for "01 1E" (Service 01, PID 0x1E).</p>
  * <p>Description: Auxiliary input status</p>
  * <p>The response:
  * <table border="1">
@@ -33,10 +33,11 @@ import io.github.macfja.obd2.response.AuxilaryInputResponse;
  * <tr><th>Min value</th><td>-</td></tr>
  * <tr><th>Max value</th><td>-</td></tr>
  * <tr><th>Equation</th> <td>Bit encoded</td></tr>
+ * <tr><th>Class</th>    <td>{@link AuxilaryInputResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public class AuxilaryInputStatus extends LiveCommand {
     @Override

@@ -19,6 +19,7 @@
 
 package io.github.macfja.obd2;
 
+import io.github.macfja.obd2.commander.CommanderInterface;
 import io.github.macfja.obd2.exception.ExceptionResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,12 +38,13 @@ import java.util.Map;
  * @see Command
  * @see Response
  */
-public class Commander {
+public class Commander implements CommanderInterface {
     private final Map<String, byte[]> persistentResult = new HashMap<>();
     private InputStream inputStream;
     private OutputStream outputStream;
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    @Override
     public void setCommunicationInterface(OutputStream toOBDStream, InputStream fromOBDStream) {
         this.outputStream = toOBDStream;
         this.inputStream = fromOBDStream;
@@ -56,6 +58,7 @@ public class Commander {
      * @throws IOException     If an error occurs during communication with the OBD interfaces
      * @throws ScriptException If the conversion equation is wrong
      */
+    @Override
     public Response sendCommand(Command command) throws IOException, ScriptException, ExceptionResponse {
         String request = command.getRequest();
         logger.info("Sending command: {}", request);
@@ -72,13 +75,13 @@ public class Commander {
         byte[] rawResult = read();
 
         if (command.getClass().getAnnotation(PersistentCommand.class) != null) {
-            logger.info("Persistent command ({}), store result", command.getRequest());
-            persistentResult.put(request, rawResult);
+            persistCommand(request, rawResult);
         }
 
         return command.getResponse(rawResult);
     }
 
+    @Override
     public void clearPersistentResponseStorage() {
         logger.info("Clear persistent response storage");
         persistentResult.clear();
@@ -90,11 +93,18 @@ public class Commander {
      *
      * @param request The request code of the command ({@link Command#getRequest()})
      */
-    protected void unpersistCommand(String request) {
+    @Override
+    public void unpersistCommand(String request) {
         if (persistentResult.containsKey(request)) {
             logger.info("Remove command {} from persistent storage", request);
             persistentResult.remove(request);
         }
+    }
+
+    @Override
+    public void persistCommand(String request, byte[] rawResponse) {
+        logger.info("Persistent command ({}), store result", request);
+        persistentResult.put(request, rawResponse);
     }
 
     /**
@@ -107,7 +117,7 @@ public class Commander {
         byte b;
         StringBuilder resultString = new StringBuilder();
 
-        // read until '>' arrives OR end of stream reached
+        // read until the end of stream reached
         char c;
         // -1 if the end of the stream is reached
         while (((b = (byte) inputStream.read()) > -1)) {

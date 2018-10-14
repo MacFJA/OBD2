@@ -25,9 +25,9 @@ import io.github.macfja.obd2.Response;
 import io.github.macfja.obd2.response.AvailablePidResponse;
 
 /**
- * <p>This class is the OBD-II command for multiple commands: "01 00" (Mode 01, PID 0x00), "01 20" (Mode 01, PID 0x20),
- * "01 40" (Mode 01, PID 0x40) and "01 60" (Mode 01, PID 0x60), "01 80" (Mode 01, PID 0x80),
- * "01 A0" (Mode 01, PID 0xA0), "01 C0" (Mode 01, PID 0xC0).</p>
+ * <p>This class is the OBD-II command for multiple commands: "01 00" (Service 01, PID 0x00), "01 20" (Service 01, PID 0x20),
+ * "01 40" (Service 01, PID 0x40) and "01 60" (Service 01, PID 0x60), "01 80" (Service 01, PID 0x80),
+ * "01 A0" (Service 01, PID 0xA0), "01 C0" (Service 01, PID 0xC0).</p>
  * <p>Description: <ul>
  * <li>PIDs supported [01 - 20]</li>
  * <li>PIDs supported [21 - 40]</li>
@@ -44,10 +44,11 @@ import io.github.macfja.obd2.response.AvailablePidResponse;
  * <tr><th>Min value</th><td>-</td></tr>
  * <tr><th>Max value</th><td>-</td></tr>
  * <tr><th>Equation</th> <td>Bit encoded</td></tr>
+ * <tr><th>Class</th>    <td>{@link AvailablePidResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 @PersistentCommand
 public enum SupportedPid implements Command {

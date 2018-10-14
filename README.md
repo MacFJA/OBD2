@@ -2,7 +2,7 @@
 
 ## Supported commands
 
-Although any commands can be send with this lib, the list of pur object command does not cover all existing commands.
+Although any commands can be send with this lib, the list of pure object command does not cover all existing commands.
 
 Some commands are missing, because I didn't find documentation about it or because my car is pretty old and doesn't support many OBD-II commands.
 
@@ -90,7 +90,7 @@ Remove the source:
 cd ..
 rm -r OBD2/
 ```
-Add the depency in your Maven project:
+Add the dependency in your Maven project:
 ```xml
 <project>
     <!-- ... -->
@@ -99,7 +99,7 @@ Add the depency in your Maven project:
         <dependency>
             <groupId>io.github.macfja</groupId>
             <artifactId>obd2</artifactId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </dependency>
         <!-- ... -->
     </dependencies>

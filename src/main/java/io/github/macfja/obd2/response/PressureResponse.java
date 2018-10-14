@@ -17,36 +17,31 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package io.github.macfja.obd2.command.livedata;
+package io.github.macfja.obd2.response;
 
-import io.github.macfja.obd2.Response;
-import io.github.macfja.obd2.command.LiveCommand;
-import io.github.macfja.obd2.response.TemperatureResponse;
+import io.github.macfja.obd2.Unit;
+
+import javax.script.ScriptException;
 
 /**
- * <p>This class is the OBD-II command for "01 5C" (Service 01, PID 0x5C).</p>
- * <p>Description: Engine oil temperature</p>
- * <p>The response:
- * <table border="1">
- * <tr><th>Size</th>     <td>1 byte</td></tr>
- * <tr><th>Unit</th>     <td>°C</td></tr>
- * <tr><th>Min value</th><td>-40</td></tr>
- * <tr><th>Max value</th><td>215</td></tr>
- * <tr><th>Equation</th> <td><pre>A - 40</pre></td></tr>
- * <tr><th>Class</th>    <td>{@link TemperatureResponse}</td></tr>
- * </table></p>
+ * <p>This class is the response of a {@link io.github.macfja.obd2.Command} that return a pressure.</p>
+ * <p>Unit: Pascal (Pa) or Kilo Pascal (kPa)</p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
-public class EngineOilTemperature extends LiveCommand {
-    @Override
-    public String getCode() {
-        return "5C";
+public class PressureResponse extends CalculatedResponse {
+    private final boolean kilo;
+
+    public PressureResponse(byte[] raw, Number calculated, boolean kilo) {
+        super(raw, calculated);
+        this.kilo = kilo;
     }
 
-    @Override
-    public Response getResponse(byte[] rawResult) {
-        return new TemperatureResponse(rawResult);
+    public PressureResponse(byte[] raw, String equation, boolean kilo) throws ScriptException {
+        this(raw, calculateFromEquation(raw, equation), kilo);
+    }
+
+    public Unit getUnit() {
+        return kilo ? Unit.KiloPascal : Unit.Pascal;
     }
 }

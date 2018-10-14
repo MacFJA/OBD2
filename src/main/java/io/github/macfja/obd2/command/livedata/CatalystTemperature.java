@@ -27,8 +27,8 @@ import javax.script.ScriptException;
 
 /**
  * <p>This class is the OBD-II command for multiple commands: "01 3C" to "01 0F".</p>
- * <p>The commands are: "01 3C" (Mode 01, PID 0x3C), "01 3D" (Mode 01, PID 0x3D),
- * "01 3E" (Mode 01, PID 0x3E) and "01 3F" (Mode 01, PID 0x3F).</p>
+ * <p>The commands are: "01 3C" (Service 01, PID 0x3C), "01 3D" (Service 01, PID 0x3D),
+ * "01 3E" (Service 01, PID 0x3E) and "01 3F" (Service 01, PID 0x3F).</p>
  * <p>Description: <ul>
  * <li>Catalyst Temperature: Bank 1, Sensor 1</li>
  * <li>Catalyst Temperature: Bank 2, Sensor 1</li>
@@ -46,10 +46,11 @@ import javax.script.ScriptException;
  * ----------- - 40
  *     10
  *     </pre></td></tr>
+ * <tr><th>Class</th>    <td>{@link TemperatureResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public enum CatalystTemperature implements Command {
     /**

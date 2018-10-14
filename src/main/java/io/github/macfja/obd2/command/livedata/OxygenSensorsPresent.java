@@ -25,7 +25,7 @@ import io.github.macfja.obd2.command.LiveCommand;
 import io.github.macfja.obd2.response.SensorPresentResponse;
 
 /**
- * <p>This class is the OBD-II command for "01 13" (Mode 01, PID 0x13).</p>
+ * <p>This class is the OBD-II command for "01 13" (Service 01, PID 0x13).</p>
  * <p>Description: Oxygen sensors present (in 2 banks)</p>
  * <p>The response:
  * <table border="1">
@@ -34,10 +34,11 @@ import io.github.macfja.obd2.response.SensorPresentResponse;
  * <tr><th>Min value</th><td>-</td></tr>
  * <tr><th>Max value</th><td>-</td></tr>
  * <tr><th>Equation</th> <td>Bit encoded</tr>
+ * <tr><th>Class</th>    <td>{@link SensorPresentResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 @PersistentCommand
 public class OxygenSensorsPresent extends LiveCommand {

@@ -28,53 +28,64 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Mode 05 commands
+ * Service 05 commands
  *
  * @author MacFJA
  */
 public abstract class OxygenMonitorCommand {
     /**
-     * List of all command in the Mode 05
+     * List of all command in the Service 05
      *
      * @return List of commands
      */
+    public static Map<String, Command> getService05Commands() {
+        Map<String, Command> service05 = new HashMap<>();
+
+        service05.put("0100", new SupportedOxygenSensorMonitorCommand());
+        service05.put("0101", RichToLeanMonitorCommand.Bank1Sensor1);
+        service05.put("0102", RichToLeanMonitorCommand.Bank1Sensor2);
+        service05.put("0103", RichToLeanMonitorCommand.Bank1Sensor3);
+        service05.put("0104", RichToLeanMonitorCommand.Bank1Sensor4);
+        service05.put("0105", RichToLeanMonitorCommand.Bank2Sensor1);
+        service05.put("0106", RichToLeanMonitorCommand.Bank2Sensor2);
+        service05.put("0107", RichToLeanMonitorCommand.Bank2Sensor3);
+        service05.put("0108", RichToLeanMonitorCommand.Bank2Sensor4);
+        service05.put("0109", RichToLeanMonitorCommand.Bank3Sensor1);
+        service05.put("010A", RichToLeanMonitorCommand.Bank3Sensor2);
+        service05.put("010B", RichToLeanMonitorCommand.Bank3Sensor3);
+        service05.put("010C", RichToLeanMonitorCommand.Bank3Sensor4);
+        service05.put("010D", RichToLeanMonitorCommand.Bank4Sensor1);
+        service05.put("010E", RichToLeanMonitorCommand.Bank4Sensor2);
+        service05.put("010F", RichToLeanMonitorCommand.Bank4Sensor3);
+        service05.put("0110", RichToLeanMonitorCommand.Bank4Sensor4);
+        service05.put("0201", LeanToRichMonitorCommand.Bank1Sensor1);
+        service05.put("0202", LeanToRichMonitorCommand.Bank1Sensor2);
+        service05.put("0203", LeanToRichMonitorCommand.Bank1Sensor3);
+        service05.put("0204", LeanToRichMonitorCommand.Bank1Sensor4);
+        service05.put("0205", LeanToRichMonitorCommand.Bank2Sensor1);
+        service05.put("0206", LeanToRichMonitorCommand.Bank2Sensor2);
+        service05.put("0207", LeanToRichMonitorCommand.Bank2Sensor3);
+        service05.put("0208", LeanToRichMonitorCommand.Bank2Sensor4);
+        service05.put("0209", LeanToRichMonitorCommand.Bank3Sensor1);
+        service05.put("020A", LeanToRichMonitorCommand.Bank3Sensor2);
+        service05.put("020B", LeanToRichMonitorCommand.Bank3Sensor3);
+        service05.put("020C", LeanToRichMonitorCommand.Bank3Sensor4);
+        service05.put("020D", LeanToRichMonitorCommand.Bank4Sensor1);
+        service05.put("020E", LeanToRichMonitorCommand.Bank4Sensor2);
+        service05.put("020F", LeanToRichMonitorCommand.Bank4Sensor3);
+        service05.put("0210", LeanToRichMonitorCommand.Bank4Sensor4);
+
+        return service05;
+    }
+
+    /**
+     * List of all command in the Mode 05
+     *
+     * @deprecated Since 1.1.0, replaced by {@link #getService05Commands()}
+     * @return List of commands
+     */
+    @Deprecated
     public static Map<String, Command> getMode05Commands() {
-        Map<String, Command> mode05 = new HashMap<>();
-
-        mode05.put("0100", new SupportedOxygenSensorMonitorCommand());
-        mode05.put("0101", RichToLeanMonitorCommand.Bank1Sensor1);
-        mode05.put("0102", RichToLeanMonitorCommand.Bank1Sensor2);
-        mode05.put("0103", RichToLeanMonitorCommand.Bank1Sensor3);
-        mode05.put("0104", RichToLeanMonitorCommand.Bank1Sensor4);
-        mode05.put("0105", RichToLeanMonitorCommand.Bank2Sensor1);
-        mode05.put("0106", RichToLeanMonitorCommand.Bank2Sensor2);
-        mode05.put("0107", RichToLeanMonitorCommand.Bank2Sensor3);
-        mode05.put("0108", RichToLeanMonitorCommand.Bank2Sensor4);
-        mode05.put("0109", RichToLeanMonitorCommand.Bank3Sensor1);
-        mode05.put("010A", RichToLeanMonitorCommand.Bank3Sensor2);
-        mode05.put("010B", RichToLeanMonitorCommand.Bank3Sensor3);
-        mode05.put("010C", RichToLeanMonitorCommand.Bank3Sensor4);
-        mode05.put("010D", RichToLeanMonitorCommand.Bank4Sensor1);
-        mode05.put("010E", RichToLeanMonitorCommand.Bank4Sensor2);
-        mode05.put("010F", RichToLeanMonitorCommand.Bank4Sensor3);
-        mode05.put("0110", RichToLeanMonitorCommand.Bank4Sensor4);
-        mode05.put("0201", LeanToRichMonitorCommand.Bank1Sensor1);
-        mode05.put("0202", LeanToRichMonitorCommand.Bank1Sensor2);
-        mode05.put("0203", LeanToRichMonitorCommand.Bank1Sensor3);
-        mode05.put("0204", LeanToRichMonitorCommand.Bank1Sensor4);
-        mode05.put("0205", LeanToRichMonitorCommand.Bank2Sensor1);
-        mode05.put("0206", LeanToRichMonitorCommand.Bank2Sensor2);
-        mode05.put("0207", LeanToRichMonitorCommand.Bank2Sensor3);
-        mode05.put("0208", LeanToRichMonitorCommand.Bank2Sensor4);
-        mode05.put("0209", LeanToRichMonitorCommand.Bank3Sensor1);
-        mode05.put("020A", LeanToRichMonitorCommand.Bank3Sensor2);
-        mode05.put("020B", LeanToRichMonitorCommand.Bank3Sensor3);
-        mode05.put("020C", LeanToRichMonitorCommand.Bank3Sensor4);
-        mode05.put("020D", LeanToRichMonitorCommand.Bank4Sensor1);
-        mode05.put("020E", LeanToRichMonitorCommand.Bank4Sensor2);
-        mode05.put("020F", LeanToRichMonitorCommand.Bank4Sensor3);
-        mode05.put("0210", LeanToRichMonitorCommand.Bank4Sensor4);
-
-        return mode05;
+        return getService05Commands();
     }
 }

@@ -26,7 +26,7 @@ import io.github.macfja.obd2.response.MaximumValuesResponse;
 import javax.script.ScriptException;
 
 /**
- * <p>This class is the OBD-II command for "01 4F" (Mode 01, PID 0xF).</p>
+ * <p>This class is the OBD-II command for "01 4F" (Service 01, PID 0xF).</p>
  * <p>Description: Maximum value for Fuel–Air equivalence ratio, oxygen sensor voltage, oxygen sensor current,
  * and intake manifold absolute pressure</p>
  * <p>The response:
@@ -41,10 +41,11 @@ import javax.script.ScriptException;
  * <li><pre>C</pre></li>
  * <li><pre>D * 10</pre></li>
  * </ul></td></tr>
+ * <tr><th>Class</th>    <td>{@link MaximumValuesResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public class MaximumValues extends LiveCommand {
     @Override

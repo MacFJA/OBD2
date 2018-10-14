@@ -28,36 +28,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Get the equivalent Mode 01 ({@link LiveCommand}) command in the freeze frame. (State when the MIL was turn on)
+ * Get the equivalent Service 01 ({@link LiveCommand}) command in the freeze frame. (State when the MIL was turn on)
  *
  * @author MacFJA
  */
 public class FrozeCommand implements Command {
-    private Command mode01Command;
+    private Command service01Command;
 
     /**
-     * @param mode01Command The Mode 01 command
-     * @throws IllegalArgumentException If the command is not a Mode 01 command or if the command is "01 01"
+     * @param service01Command The Service 01 command
+     * @throws IllegalArgumentException If the command is not a Service 01 command or if the command is "01 01"
      */
-    public FrozeCommand(Command mode01Command) throws IllegalArgumentException {
-        if (!mode01Command.getRequest().startsWith("01")) {
-            throw new IllegalArgumentException("The command must be a live data (Mode 01) command");
+    public FrozeCommand(Command service01Command) throws IllegalArgumentException {
+        if (!service01Command.getRequest().startsWith("01")) {
+            throw new IllegalArgumentException("The command must be a live data (Service 01) command");
         }
-        if (mode01Command.getRequest().endsWith("01")) {
-            throw new IllegalArgumentException("The command '01 01' is not available in froze mode (Mode 02)");
+        if (service01Command.getRequest().endsWith("01")) {
+            throw new IllegalArgumentException("The command '01 01' is not available in frozen context (Service 02)");
         }
-        this.mode01Command = mode01Command;
+        this.service01Command = service01Command;
     }
 
     /**
-     * Get the list of all command that are in or compatible with Mode 02
+     * Get the list of all command that are in or compatible with Service 02
      *
      * @return List of commands
      */
-    public static Map<String, FrozeCommand> getMode02Commands() {
-        Map<String, Command> commands = LiveCommand.getMode01Commands();
-        commands.remove("01"); // Mode 01 only
-        commands.put("02", new FreezeDiagnosticTroubleCode()); // Mode 02 only
+    public static Map<String, FrozeCommand> getService02Commands() {
+        Map<String, Command> commands = LiveCommand.getService01Commands();
+        commands.remove("01"); // Service 01 only
+        commands.put("02", new FreezeDiagnosticTroubleCode()); // Service 02 only
 
         Map<String, FrozeCommand> frozeCommands = new HashMap<>();
 
@@ -68,18 +68,29 @@ public class FrozeCommand implements Command {
         return frozeCommands;
     }
 
+    /**
+     * Get the list of all command that are in or compatible with Mode 02
+     *
+     * @deprecated Since 1.1.0, replaced by {@link #getService02Commands()}
+     * @return List of commands
+     */
+    @Deprecated
+    public static Map<String, FrozeCommand> getMode02Commands() {
+        return getService02Commands();
+    }
+
     @Override
     public String getRequest() {
-        return "02" + mode01Command.getRequest().substring(2);
+        return "02" + service01Command.getRequest().substring(2);
     }
 
     @Override
     public Response getResponse(byte[] rawResult) throws ScriptException {
-        return mode01Command.getResponse(rawResult);
+        return service01Command.getResponse(rawResult);
     }
 
     @Override
     public String toString() {
-        return mode01Command.toString();
+        return service01Command.toString();
     }
 }

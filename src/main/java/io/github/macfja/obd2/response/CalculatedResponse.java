@@ -79,23 +79,6 @@ public abstract class CalculatedResponse implements Response {
         return value;
     }
 
-    private static Number getSignedA(byte[] raw) {
-        int value = getIntValue(raw, 'A');
-        String bin = Integer.toBinaryString(value);
-        // First char is the sign
-        boolean negative = bin.startsWith("1");
-        String left = "0" + bin.substring(1);
-
-        if (negative) {
-            left = "0" + bin.substring(1)
-                    .replace('0', '2')
-                    .replace('1', '0')
-                    .replace('2', '1');
-        }
-
-        return (negative ? -1 : 1) * Integer.parseInt(left, 2) + (negative ? -1 : 0);
-    }
-
     protected int getByte(char group) {
         return getByte(group - 'A');
     }

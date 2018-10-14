@@ -103,7 +103,7 @@ public class Commander extends io.github.macfja.obd2.Commander {
      */
     @Override
     public Response sendCommand(Command command) throws IOException, ScriptException {
-        if (command instanceof BooleanCommand) {
+        if (command instanceof BooleanCommand && !((BooleanCommand) command).getPrefix().equals("E")) {
             putBooleanCommand((BooleanCommand) command);
         }
         currentRequest = command.getRequest();
@@ -115,6 +115,11 @@ public class Commander extends io.github.macfja.obd2.Commander {
             logger.warn("The response is not a normal response: {}", exceptionResponse.getLocalizedMessage());
             response = exceptionResponse;
         }
+
+        if (command instanceof BooleanCommand && ((BooleanCommand) command).getPrefix().equals("E")) {
+            putBooleanCommand((BooleanCommand) command);
+        }
+
         lastRequest = currentRequest;
 
         if (response instanceof ResponseOK && ((ResponseOK) response).isError()) {
@@ -187,8 +192,11 @@ public class Commander extends io.github.macfja.obd2.Commander {
             rawString = rawString.replaceAll("^\\s+", "");
         }
 
-        String responseHeader = Integer.toHexString(4 + Integer.parseInt(currentRequest.substring(0, 1)))
-                + currentRequest.substring(1);
+        String responseHeader = "0000";
+        if (currentRequest.substring(0,1).matches("[0-9]")) {
+            responseHeader = Integer.toHexString(4 + Integer.parseInt(currentRequest.substring(0, 1)))
+                    + currentRequest.substring(1);
+        }
 
         if (rawString.startsWith(responseHeader)) {
             rawString = rawString.substring(responseHeader.length());
@@ -236,6 +244,11 @@ public class Commander extends io.github.macfja.obd2.Commander {
         return data;
     }
 
+    /**
+     * Reduce the amount of data send back by turning off several options
+     * @throws IOException     If an error occurs during communication with the OBD interfaces
+     * @throws ScriptException If the conversion equation is wrong
+     */
     public void reduceCommunicationSize() throws IOException, ScriptException {
         logger.info("Reducing communication by turning off 'Echo', 'Line Feed', 'Space' and 'Header'");
         sendCommand(BooleanCommand.EchoOff);

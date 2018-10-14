@@ -26,7 +26,7 @@ import io.github.macfja.obd2.response.TemperatureResponse;
 import javax.script.ScriptException;
 
 /**
- * <p>This class is the OBD-II command for "01 46" (Mode 01, PID 0x46).</p>
+ * <p>This class is the OBD-II command for "01 46" (Service 01, PID 0x46).</p>
  * <p>Description: Ambient air temperature</p>
  * <p>The response:
  * <table border="1">
@@ -35,10 +35,11 @@ import javax.script.ScriptException;
  * <tr><th>Min value</th><td>-40</td></tr>
  * <tr><th>Max value</th><td>215</td></tr>
  * <tr><th>Equation</th> <td><pre>A - 40</pre></tr>
+ * <tr><th>Class</th>    <td>{@link TemperatureResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public class AmbientAirTemperature extends LiveCommand {
     @Override

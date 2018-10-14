@@ -25,8 +25,8 @@ import io.github.macfja.obd2.response.SecondaryOxygenSensorTrimResponse;
 
 /**
  * <p>This class is the OBD-II command for multiple commands: "01 55" to "01 58".</p>
- * <p>The commands are: "01 55" (Mode 01, PID 0x55), "01 56" (Mode 01, PID 0x56),
- * "01 57" (Mode 01, PID 0x57) and "01 58" (Mode 01, PID 0x58).</p>
+ * <p>The commands are: "01 55" (Service 01, PID 0x55), "01 56" (Service 01, PID 0x56),
+ * "01 57" (Service 01, PID 0x57) and "01 58" (Service 01, PID 0x58).</p>
  * <p>Description: <ul>
  * <li>Short term secondary oxygen sensor trim, A: bank 1, B: bank 3</li>
  * <li>Long term secondary oxygen sensor trim, A: bank 1, B: bank 3</li>
@@ -44,10 +44,11 @@ import io.github.macfja.obd2.response.SecondaryOxygenSensorTrimResponse;
  * ---- - 100  |  ---- - 100
  * 1.28        |  1.28
  *     </pre></td></tr>
+ * <tr><th>Class</th>    <td>{@link SecondaryOxygenSensorTrimResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public enum SecondaryOxygenSensorTrim implements Command {
     ShortTermB1B3("55"),

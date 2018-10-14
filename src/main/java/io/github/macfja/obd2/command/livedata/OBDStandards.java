@@ -25,7 +25,7 @@ import io.github.macfja.obd2.command.LiveCommand;
 import io.github.macfja.obd2.response.OBDStandardTypeResponse;
 
 /**
- * <p>This class is the OBD-II command for "01 1C" (Mode 01, PID 0x1C).</p>
+ * <p>This class is the OBD-II command for "01 1C" (Service 01, PID 0x1C).</p>
  * <p>Description: OBD standards this vehicle conforms to</p>
  * <p>The response:
  * <table border="1">
@@ -34,10 +34,11 @@ import io.github.macfja.obd2.response.OBDStandardTypeResponse;
  * <tr><th>Min value</th><td>-</td></tr>
  * <tr><th>Max value</th><td>-</td></tr>
  * <tr><th>Equation</th> <td>Bit encoded</tr>
+ * <tr><th>Class</th>    <td>{@link OBDStandardTypeResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 @PersistentCommand
 public class OBDStandards extends LiveCommand {

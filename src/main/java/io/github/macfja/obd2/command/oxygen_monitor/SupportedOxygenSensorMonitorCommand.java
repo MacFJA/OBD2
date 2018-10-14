@@ -27,7 +27,7 @@ import io.github.macfja.obd2.response.AvailableOxygenSensorMonitorResponse;
 import javax.script.ScriptException;
 
 /**
- * <p>This class is the OBD-II command for "05 0100" (Mode 05, PID 0x0100).</p>
+ * <p>This class is the OBD-II command for "05 0100" (Service 05, PID 0x0100).</p>
  * <p>Description: OBD Monitor IDs supported ($01 – $20)</p>
  * <p>The response:
  * <table border="1">
@@ -36,10 +36,11 @@ import javax.script.ScriptException;
  * <tr><th>Min value</th><td>-</td></tr>
  * <tr><th>Max value</th><td>-</td></tr>
  * <tr><th>Equation</th> <td>Bit encoded</td></tr>
+ * <tr><th>Class</th>    <td>{@link AvailableOxygenSensorMonitorResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_05">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_05">Wikipedia</a>
  */
 @PersistentCommand
 public class SupportedOxygenSensorMonitorCommand implements Command {

@@ -24,7 +24,7 @@ import io.github.macfja.obd2.command.LiveCommand;
 import io.github.macfja.obd2.response.MILResponse;
 
 /**
- * <p>This class is the OBD-II command for "01 41" (Mode 01, PID 0x41).</p>
+ * <p>This class is the OBD-II command for "01 41" (Service 01, PID 0x41).</p>
  * <p>Description: Monitor status this drive cycle.</p>
  * <p>The response:
  * <table border="1">
@@ -33,10 +33,11 @@ import io.github.macfja.obd2.response.MILResponse;
  * <tr><th>Min value</th><td>-</td></tr>
  * <tr><th>Max value</th><td>-</td></tr>
  * <tr><th>Equation</th> <td>Bit encoded</tr>
+ * <tr><th>Class</th>    <td>{@link MILResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public class StatusSinceStart extends LiveCommand {
     @Override

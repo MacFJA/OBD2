@@ -27,7 +27,7 @@ import io.github.macfja.obd2.response.CalculatedResponse;
 import javax.script.ScriptException;
 
 /**
- * <p>This class is the OBD-II command for "01 50" (Mode 01, PID 0x50).</p>
+ * <p>This class is the OBD-II command for "01 50" (Service 01, PID 0x50).</p>
  * <p>Description: Maximum value for air flow rate from mass air flow sensor</p>
  * <p>The response:
  * <table border="1">
@@ -36,10 +36,11 @@ import javax.script.ScriptException;
  * <tr><th>Min value</th><td>0</td></tr>
  * <tr><th>Max value</th><td>2550</td></tr>
  * <tr><th>Equation</th> <td><pre>A * 10</pre></tr>
+ * <tr><th>Class</th>    <td>{@link CalculatedResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public class MaximumAirFlowRate extends LiveCommand {
     @Override

@@ -20,7 +20,7 @@
 package io.github.macfja.obd2.exception;
 
 /**
- * The Exception/Response when the {@link io.github.macfja.obd2.Commander} didn't receive the expected response.
+ * The Exception/Response when the {@link io.github.macfja.obd2.commander.CommanderInterface} didn't receive the expected response.
  *
  * @author MacFJA
  */

@@ -28,8 +28,8 @@ import javax.script.ScriptException;
 
 /**
  * <p>This class is the OBD-II command for multiple commands: "01 06" to "01 08".</p>
- * <p>The commands are: "01 06" (Mode 01, PID 0x06), "01 07" (Mode 01, PID 0x07),
- * "01 07" (Mode 01, PID 0x07) and "01 08" (Mode 01, PID 0x08).</p>
+ * <p>The commands are: "01 06" (Service 01, PID 0x06), "01 07" (Service 01, PID 0x07),
+ * "01 07" (Service 01, PID 0x07) and "01 08" (Service 01, PID 0x08).</p>
  * <p>Description: <ul>
  * <li>Short term fuel trim—Bank 1</li>
  * <li>Long term fuel trim—Bank 1</li>
@@ -47,10 +47,11 @@ import javax.script.ScriptException;
  * ---- - 100
  * 1.28
  *     </pre></td></tr>
+ * <tr><th>Class</th>    <td>{@link PercentResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public enum FuelTrim implements Command {
     ShortTermBank1("06"),

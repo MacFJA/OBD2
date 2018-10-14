@@ -27,7 +27,7 @@ import io.github.macfja.obd2.response.PercentResponse;
 import javax.script.ScriptException;
 
 /**
- * <p>This class is the OBD-II command for "01 2D" (Mode 01, PID 0x2D).</p>
+ * <p>This class is the OBD-II command for "01 2D" (Service 01, PID 0x2D).</p>
  * <p>Description: EGR Error</p>
  * <p>The response:
  * <table border="1">
@@ -40,10 +40,11 @@ import javax.script.ScriptException;
  * --- * A - 100
  * 120
  *     </pre></td></tr>
+ * <tr><th>Class</th>    <td>{@link PercentResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public class ExhaustGasRecirculationError extends LiveCommand {
     @Override

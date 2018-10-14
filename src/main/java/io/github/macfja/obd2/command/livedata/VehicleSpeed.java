@@ -27,7 +27,7 @@ import io.github.macfja.obd2.response.CalculatedResponse;
 import javax.script.ScriptException;
 
 /**
- * <p>This class is the OBD-II command for "01 0D" (Mode 01, PID 0x0D).</p>
+ * <p>This class is the OBD-II command for "01 0D" (Service 01, PID 0x0D).</p>
  * <p>Description: Vehicle speed</p>
  * <p>The response:
  * <table border="1">
@@ -36,10 +36,11 @@ import javax.script.ScriptException;
  * <tr><th>Min value</th><td>0</td></tr>
  * <tr><th>Max value</th><td>255</td></tr>
  * <tr><th>Equation</th> <td><pre>A</pre></td></tr>
+ * <tr><th>Class</th>    <td>{@link CalculatedResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public class VehicleSpeed extends LiveCommand {
     @Override

@@ -23,7 +23,7 @@ import io.github.macfja.obd2.Response;
 import io.github.macfja.obd2.Unit;
 
 /**
- * The Exception/Response when the {@link io.github.macfja.obd2.Commander} encounter an issue with the response.
+ * The Exception/Response when the {@link io.github.macfja.obd2.commander.CommanderInterface} encounter an issue with the response.
  *
  * @author MacFJA
  */

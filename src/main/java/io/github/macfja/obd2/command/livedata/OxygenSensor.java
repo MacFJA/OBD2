@@ -28,15 +28,15 @@ import io.github.macfja.obd2.response.OxygenSensorFuelTrimResponse;
 
 /**
  * <p>This class is the OBD-II command for multiple commands: "01 14" to "01 1B", "01 24" to "01 2B" and "01 34" to "01 3B".</p><p>The commands are: <ul>
- * <li>"01 14" (Mode 01, PID 0x14), "01 15" (Mode 01, PID 0x15),
- * "01 16" (Mode 01, PID 0x16), "01 17" (Mode 01, PID 0x17), "01 18" (Mode 01, PID 0x18), "01 19" (Mode 01, PID 0x19),
- * "01 1A" (Mode 01, PID 0x1A), "01 1B" (Mode 01, PID 0x1B)</li>
- * <li>"01 24" (Mode 01, PID 0x24), "01 25" (Mode 01, PID 0x25),
- * "01 26" (Mode 01, PID 0x26), "01 27" (Mode 01, PID 0x27), "01 28" (Mode 01, PID 0x28), "01 29" (Mode 01, PID 0x29),
- * "01 2A" (Mode 01, PID 0x2A), "01 2B" (Mode 01, PID 0x2B)</li>
- * <li>"01 34" (Mode 01, PID 0x34), "01 35" (Mode 01, PID 0x35),
- * "01 36" (Mode 01, PID 0x36), "01 37" (Mode 01, PID 0x37), "01 38" (Mode 01, PID 0x38), "01 39" (Mode 01, PID 0x39),
- * "01 3A" (Mode 01, PID 0x3A), "01 3B" (Mode 01, PID 0x3B)</li>
+ * <li>"01 14" (Service 01, PID 0x14), "01 15" (Service 01, PID 0x15),
+ * "01 16" (Service 01, PID 0x16), "01 17" (Service 01, PID 0x17), "01 18" (Service 01, PID 0x18), "01 19" (Service 01, PID 0x19),
+ * "01 1A" (Service 01, PID 0x1A), "01 1B" (Service 01, PID 0x1B)</li>
+ * <li>"01 24" (Service 01, PID 0x24), "01 25" (Service 01, PID 0x25),
+ * "01 26" (Service 01, PID 0x26), "01 27" (Service 01, PID 0x27), "01 28" (Service 01, PID 0x28), "01 29" (Service 01, PID 0x29),
+ * "01 2A" (Service 01, PID 0x2A), "01 2B" (Service 01, PID 0x2B)</li>
+ * <li>"01 34" (Service 01, PID 0x34), "01 35" (Service 01, PID 0x35),
+ * "01 36" (Service 01, PID 0x36), "01 37" (Service 01, PID 0x37), "01 38" (Service 01, PID 0x38), "01 39" (Service 01, PID 0x39),
+ * "01 3A" (Service 01, PID 0x3A), "01 3B" (Service 01, PID 0x3B)</li>
  * </ul></p>
  * <p>Description: <ul>
  * <li>Oxygen Sensor 1<br />A: Voltage<br />B: Short term fuel trim</li>
@@ -89,10 +89,11 @@ import io.github.macfja.obd2.response.OxygenSensorFuelTrimResponse;
  * 65536                  |      256
  *         </pre></li>
  * </ul></td></tr>
+ * <tr><th>Class</th>    <td>{@link OxygenSensorFuelTrimResponse}, {@link OxygenSensorFuelAirVoltageResponse}, {@link OxygenSensorFuelAirCurrentResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public enum OxygenSensor implements Command {
     FuelTrimB1S1("14", 1, 1, Type.FuelTrim),

@@ -43,10 +43,11 @@ import io.github.macfja.obd2.response.PercentResponse;
  * --- * A
  * 255
  *     </pre></td></tr>
+ * <tr><th>Class</th>    <td>{@link PercentResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public enum AbsoluteThrottlePosition implements Command {
     ThrottleB("47"),

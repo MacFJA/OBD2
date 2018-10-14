@@ -24,7 +24,7 @@ import io.github.macfja.obd2.command.LiveCommand;
 import io.github.macfja.obd2.response.PercentResponse;
 
 /**
- * <p>This class is the OBD-II command for "01 11" (Mode 01, PID 0x11).</p>
+ * <p>This class is the OBD-II command for "01 11" (Service 01, PID 0x11).</p>
  * <p>Description: Throttle position</p>
  * <p>The response:
  * <table border="1">
@@ -37,10 +37,11 @@ import io.github.macfja.obd2.response.PercentResponse;
  * --- * A
  * 255
  *     </pre></td></tr>
+ * <tr><th>Class</th>    <td>{@link PercentResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public class ThrottlePosition extends LiveCommand {
     @Override

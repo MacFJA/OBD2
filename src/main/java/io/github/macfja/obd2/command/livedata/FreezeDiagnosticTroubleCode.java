@@ -24,7 +24,7 @@ import io.github.macfja.obd2.command.LiveCommand;
 import io.github.macfja.obd2.response.DiagnosticTroubleCodeResponse;
 
 /**
- * <p>This class is the OBD-II command for "02 02" (Mode 02, PID 0x02).</p>
+ * <p>This class is the OBD-II command for "02 02" (Service 02, PID 0x02).</p>
  * <p>Description: Freeze DTC</p>
  * <p>The response:
  * <table border="1">
@@ -33,10 +33,11 @@ import io.github.macfja.obd2.response.DiagnosticTroubleCodeResponse;
  * <tr><th>Min value</th><td>-</td></tr>
  * <tr><th>Max value</th><td>-</td></tr>
  * <tr><th>Equation</th> <td>Bit encoded</td></tr>
+ * <tr><th>Class</th>    <td>{@link DiagnosticTroubleCodeResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public class FreezeDiagnosticTroubleCode extends LiveCommand {
     @Override

@@ -1,6 +1,6 @@
 # OBD commands
 
-## Mode `01` and Mode `02`
+## Service `01` and Service `02`
 
  Code    | Implemented | Short description
 ---------|-------------|-------------------
@@ -146,15 +146,15 @@
  `01 C4` | _NO_        | ?
  `02 02` | _NO_        | Freeze frame trouble code BCD
 
-## Mode 03
+## Service 03
 
 **Implemented**
 
-## Mode 04
+## Service 04
 
 **Implemented**
 
-## Mode 05
+## Service 05
 
  Code      | Implemented | Short description
 -----------|-------------|-------------------
@@ -192,23 +192,23 @@
  `05 020F` | **YES**     | O2 Sensor Monitor Bank 4 Sensor 3, Lean to Rich sensor threshold voltage
  `05 0210` | **YES**     | O2 Sensor Monitor Bank 4 Sensor 4, Lean to Rich sensor threshold voltage
 
-## Mode 06
+## Service 06
 
 _Not implemented_
 
-## Mode 07
+## Service 07
 
 _Not implemented_
 
-## Mode 08
+## Service 08
 
 _Not implemented_
 
-## Mode 09
+## Service 09
 
  Code    | Implemented | Short description
 ---------|-------------|-------------------
- `09 00` | **YES**     | Mode 9 supported PIDs (01 to 20)
+ `09 00` | **YES**     | Service 9 supported PIDs (01 to 20)
  `09 01` | **YES**     | VIN Message Count in PID 02. Only for ISO 9141-2, ISO 14230-4 and SAE J1850.
  `09 02` | **YES**     | Vehicle Identification Number (VIN)
  `09 03` | _NO_        | Calibration ID message count for PID 04. Only for ISO 9141-2, ISO 14230-4 and SAE J1850.
@@ -221,6 +221,6 @@ _Not implemented_
  `09 0A` | **YES**     | ECU name
  `09 0B` | _NO_        | In-use performance tracking for compression ignition vehicles
 
-## Mode 0A
+## Service 0A
 
 _Not implemented_

@@ -21,12 +21,12 @@ package io.github.macfja.obd2.command.livedata;
 
 import io.github.macfja.obd2.Response;
 import io.github.macfja.obd2.command.LiveCommand;
-import io.github.macfja.obd2.response.PressureResult;
+import io.github.macfja.obd2.response.PressureResponse;
 
 import javax.script.ScriptException;
 
 /**
- * <p>This class is the OBD-II command for "01 54" (Mode 01, PID 0x54).</p>
+ * <p>This class is the OBD-II command for "01 54" (Service 01, PID 0x54).</p>
  * <p>Description: Evap system vapor pressure</p>
  * <p>The response:
  * <table border="1">
@@ -35,10 +35,11 @@ import javax.script.ScriptException;
  * <tr><th>Min value</th><td>-32,767</td></tr>
  * <tr><th>Max value</th><td>32,768</td></tr>
  * <tr><th>Equation</th> <td><pre>(256 * A + B) - 32767</pre></td></tr>
+ * <tr><th>Class</th>    <td>{@link PressureResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public class EvapSystemVaporPressure extends LiveCommand {
     @Override
@@ -48,6 +49,6 @@ public class EvapSystemVaporPressure extends LiveCommand {
 
     @Override
     public Response getResponse(byte[] rawResult) throws ScriptException {
-        return new PressureResult(rawResult, "(256 * A + B) - 32767", false);
+        return new PressureResponse(rawResult, "(256 * A + B) - 32767", false);
     }
 }

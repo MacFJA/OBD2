@@ -26,7 +26,7 @@ import io.github.macfja.obd2.response.RawResponse;
 import javax.script.ScriptException;
 
 /**
- * Mode 04 commands
+ * Service 04 commands
  *
  * @author MacFJA
  */

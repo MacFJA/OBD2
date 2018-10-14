@@ -27,7 +27,7 @@ import io.github.macfja.obd2.response.PercentResponse;
 import javax.script.ScriptException;
 
 /**
- * <p>This class is the OBD-II command for "01 43" (Mode 01, PID 0x43).</p>
+ * <p>This class is the OBD-II command for "01 43" (Service 01, PID 0x43).</p>
  * <p>Description: Absolute load value</p>
  * <p>The response:
  * <table border="1">
@@ -40,10 +40,11 @@ import javax.script.ScriptException;
  * --- (A * 256 + B)
  * 255
  *     </pre></tr>
+ * <tr><th>Class</th>    <td>{@link PercentResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_01">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_01">Wikipedia</a>
  */
 public class AbsoluteLoadValue extends LiveCommand {
     @Override

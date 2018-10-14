@@ -25,8 +25,8 @@ import io.github.macfja.obd2.Response;
 import io.github.macfja.obd2.response.AvailablePidResponse;
 
 /**
- * <p>This class is the OBD-II command for "09 00" (Mode 09, PID 0x00).</p>
- * <p>Description: Mode 9 supported PIDs (01 to 20)</p>
+ * <p>This class is the OBD-II command for "09 00" (Service 09, PID 0x00).</p>
+ * <p>Description: Service 9 supported PIDs (01 to 20)</p>
  * <p>The response:
  * <table border="1">
  * <tr><th>Size</th>     <td>4 bytes</td></tr>
@@ -34,10 +34,11 @@ import io.github.macfja.obd2.response.AvailablePidResponse;
  * <tr><th>Min value</th><td>-</td></tr>
  * <tr><th>Max value</th><td>-</td></tr>
  * <tr><th>Equation</th> <td>Bit encoded</td></tr>
+ * <tr><th>Class</th>    <td>{@link AvailablePidResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_09">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_09">Wikipedia</a>
  */
 @PersistentCommand
 public class SupportedPid implements Command {

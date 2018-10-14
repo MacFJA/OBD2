@@ -20,12 +20,13 @@
 package io.github.macfja.obd2.command;
 
 import io.github.macfja.obd2.Command;
-import io.github.macfja.obd2.Commander;
 import io.github.macfja.obd2.Response;
 import io.github.macfja.obd2.command.livedata.SupportedPid;
 import io.github.macfja.obd2.command.oxygen_monitor.LeanToRichMonitorCommand;
 import io.github.macfja.obd2.command.oxygen_monitor.RichToLeanMonitorCommand;
 import io.github.macfja.obd2.command.oxygen_monitor.SupportedOxygenSensorMonitorCommand;
+import io.github.macfja.obd2.commander.AbstractSupportedCommanderDecorator;
+import io.github.macfja.obd2.commander.CommanderInterface;
 import io.github.macfja.obd2.exception.ExceptionResponse;
 import io.github.macfja.obd2.exception.UnsupportedResponse;
 import io.github.macfja.obd2.response.AvailableOxygenSensorMonitorResponse;
@@ -35,71 +36,33 @@ import org.slf4j.LoggerFactory;
 
 import javax.script.ScriptException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>A wrapper around a Commander to handle if a {@link Command} is available or not.</p>
+ * <p>A wrapper around a {@link CommanderInterface} to handle if a OBD {@link Command} is available or not.</p>
  * <p>If a {@link Command} is not available, then a {@link UnsupportedResponse} is return as a {@link Response}.</p>
  *
  * @author MacFJA
  * @see Command
  * @see Response
  */
-public class SupportedCommander extends Commander {
-    private final Commander parent;
+public class SupportedCommander extends AbstractSupportedCommanderDecorator {
     private final Map<String, Response> availableResponse = new HashMap<>();
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    public SupportedCommander(Commander parent) {
-        this.parent = parent;
-    }
-
-    @Override
-    public void setCommunicationInterface(OutputStream toOBDStream, InputStream fromOBDStream) {
-        parent.setCommunicationInterface(toOBDStream, fromOBDStream);
-    }
-
-    @Override
-    public Response sendCommand(Command command) throws IOException, ScriptException, ExceptionResponse {
-        String commandMode = command.getRequest().substring(0, 2);
-
-        if (!Arrays.asList("01", "02", "05", "09").contains(commandMode)
-                || command instanceof io.github.macfja.obd2.command.vehicle_info.SupportedPid
-                || command.equals(SupportedPid.Range01To20)
-                || command instanceof SupportedOxygenSensorMonitorCommand
-                ) {
-            return parent.sendCommand(command);
-        }
-
-        if ((commandMode.equals("01") || commandMode.equals("02")) && !isMode01PidSupported(command)) {
-            logger.warn("The command {} is not support by the ECU", command.getRequest());
-            return new UnsupportedResponse(command);
-        }
-
-        if (commandMode.equals("05") && !isMode05PidSupported(command)) {
-            logger.warn("The command {} is not support by the ECU", command.getRequest());
-            return new UnsupportedResponse(command);
-        }
-
-        if (commandMode.equals("09") && !isMode09PidSupported(command)) {
-            logger.warn("The command {} is not support by the ECU", command.getRequest());
-            return new UnsupportedResponse(command);
-        }
-
-        return parent.sendCommand(command);
+    public SupportedCommander(CommanderInterface parent) {
+        super(parent);
     }
 
     /**
-     * Check if a mode 09 command is supported (make any needed sub calls to check availability)
+     * Check if a service 09 command is supported (make any needed sub calls to check availability)
      *
      * @param command The command to check
      * @return {@code true} if the command is supported, {@code false} otherwise
      */
-    protected boolean isMode09PidSupported(Command command) {
+    protected boolean isService09PidSupported(Command command) {
         String pid = command.getRequest().substring(command.getRequest().length() - 2);
         Response response = getIsSupportedResponse(new io.github.macfja.obd2.command.vehicle_info.SupportedPid());
 
@@ -108,6 +71,18 @@ public class SupportedCommander extends Commander {
         }
 
         return ((AvailablePidResponse) response).isPidSupported(pid);
+    }
+
+    /**
+     * Check if a mode 09 command is supported (make any needed sub calls to check availability)
+     *
+     * @deprecated Since 1.1.0, replaced by {@link #isService09PidSupported(Command)}
+     * @param command The command to check
+     * @return {@code true} if the command is supported, {@code false} otherwise
+     */
+    @Deprecated
+    protected boolean isMode09PidSupported(Command command) {
+        return isService09PidSupported(command);
     }
 
     /**
@@ -132,12 +107,12 @@ public class SupportedCommander extends Commander {
     }
 
     /**
-     * Check if a mode 05 command is supported (make any needed sub calls to check availability)
+     * Check if a service 05 command is supported (make any needed sub calls to check availability)
      *
      * @param command The command to check
      * @return {@code true} if the command is supported, {@code false} otherwise
      */
-    protected boolean isMode05PidSupported(Command command) {
+    protected boolean isService05PidSupported(Command command) {
         Response response = getIsSupportedResponse(new SupportedOxygenSensorMonitorCommand());
 
         if (!(response instanceof AvailableOxygenSensorMonitorResponse)) {
@@ -160,12 +135,24 @@ public class SupportedCommander extends Commander {
     }
 
     /**
-     * Check if a mode 01 or mode 02 command is supported (make any needed sub calls to check availability)
+     * Check if a mode 05 command is supported (make any needed sub calls to check availability)
+     *
+     * @deprecated Since 1.1.0, replaced by {@link #isService05PidSupported(Command)}
+     * @param command The command to check
+     * @return {@code true} if the command is supported, {@code false} otherwise
+     */
+    @Deprecated
+    protected boolean isMode05PidSupported(Command command) {
+        return isService05PidSupported(command);
+    }
+
+    /**
+     * Check if a service 01 or service 02 command is supported (make any needed sub calls to check availability)
      *
      * @param command The command to check
      * @return {@code true} if the command is supported, {@code false} otherwise
      */
-    protected boolean isMode01PidSupported(Command command) {
+    protected boolean isService01PidSupported(Command command) {
         Response response;
         String pid = command.getRequest().substring(command.getRequest().length() - 2);
         Integer numericPid = Integer.parseInt(pid, 16);
@@ -191,5 +178,49 @@ public class SupportedCommander extends Commander {
             return ((AvailablePidResponse) response).isPidSupported(pid);
         }
         return false;
+    }
+
+    /**
+     * Check if a mode 01 or mode 02 command is supported (make any needed sub calls to check availability)
+     *
+     * @deprecated Since 1.1.0, replaced by {@link #isService01PidSupported(Command)}
+     * @param command The command to check
+     * @return {@code true} if the command is supported, {@code false} otherwise
+     */
+    @Deprecated
+    protected boolean isMode01PidSupported(Command command) {
+        return isService01PidSupported(command);
+    }
+
+    @Override
+    protected boolean doIsCommandSupported(Command command) {
+        String commandService = command.getRequest().substring(0, 2);
+
+        // Only check OBDII service commands and by design supported commands,
+        // suppose that others commands have already be check or will be check after
+        if (!Arrays.asList("01", "02", "05", "09").contains(commandService)
+                || command instanceof io.github.macfja.obd2.command.vehicle_info.SupportedPid
+                || command.equals(SupportedPid.Range01To20)
+                || command instanceof SupportedOxygenSensorMonitorCommand
+                ) {
+            return true;
+        }
+
+        if ((commandService.equals("01") || commandService.equals("02")) && !isService01PidSupported(command)) {
+            logger.warn("The command {} is not support by the ECU", command.getRequest());
+            return false;
+        }
+
+        if (commandService.equals("05") && !isService05PidSupported(command)) {
+            logger.warn("The command {} is not support by the ECU", command.getRequest());
+            return false;
+        }
+
+        if (commandService.equals("09") && !isService09PidSupported(command)) {
+            logger.warn("The command {} is not support by the ECU", command.getRequest());
+            return false;
+        }
+
+        return true;
     }
 }

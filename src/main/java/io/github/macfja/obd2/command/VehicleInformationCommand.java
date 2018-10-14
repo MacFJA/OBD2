@@ -29,24 +29,34 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Mode 09 commands
+ * Service 09 commands
  *
  * @author MacFJA
  */
 public abstract class VehicleInformationCommand {
     /**
-     * List of all command in the Mode 09
+     * List of all command in the Service 09
      *
      * @return List of commands
      */
+    public static Map<String, Command> getService09Commands() {
+        Map<String, Command> service09 = new HashMap<>();
+
+        service09.put("00", new SupportedPid());
+        service09.put("01", new VINMessageCount());
+        service09.put("02", new VehicleIdentificationNumber());
+        service09.put("0A", new ECUName());
+
+        return service09;
+    }
+    /**
+     * List of all command in the Mode 09
+     *
+     * @deprecated Since 1.1.0, replaced by {@link #getService09Commands()}
+     * @return List of commands
+     */
+    @Deprecated
     public static Map<String, Command> getMode09Commands() {
-        Map<String, Command> mode09 = new HashMap<>();
-
-        mode09.put("00", new SupportedPid());
-        mode09.put("01", new VINMessageCount());
-        mode09.put("02", new VehicleIdentificationNumber());
-        mode09.put("0A", new ECUName());
-
-        return mode09;
+        return getService09Commands();
     }
 }

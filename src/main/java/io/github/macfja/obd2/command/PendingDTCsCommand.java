@@ -26,7 +26,7 @@ import io.github.macfja.obd2.response.MultipleDiagnosticTroubleCodeResponse;
 import javax.script.ScriptException;
 
 /**
- * Mode 07 commands
+ * Service 07 commands
  *
  * @author MacFJA
  */

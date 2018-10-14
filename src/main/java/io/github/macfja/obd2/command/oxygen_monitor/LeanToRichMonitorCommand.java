@@ -28,12 +28,12 @@ import javax.script.ScriptException;
 
 /**
  * <p>This class is the OBD-II command for multiple commands: "05 0201" to "05 0210".</p>
- * <p>The commands are: "05 0201" (Mode 05, PID 0x0201), "05 0202" (Mode 05, PID 0x0202),
- * "05 0203" (Mode 05, PID 0x0203), "05 0204" (Mode 05, PID 0x0204), "05 0205" (Mode 05, PID 0x0205),
- * "05 0206" (Mode 05, PID 0x0206), "05 0207" (Mode 05, PID 0x0207), "05 0208" (Mode 05, PID 0x0208),
- * "05 0209" (Mode 05, PID 0x0209), "05 020A" (Mode 05, PID 0x020A), "05 020B" (Mode 05, PID 0x020B),
- * "05 020C" (Mode 05, PID 0x020C), "05 020D" (Mode 05, PID 0x020D), "05 020E" (Mode 05, PID 0x020E),
- * "05 020F" (Mode 05, PID 0x020F) and "05 0210" (Mode 05, PID 0x0210).</p>
+ * <p>The commands are: "05 0201" (Service 05, PID 0x0201), "05 0202" (Service 05, PID 0x0202),
+ * "05 0203" (Service 05, PID 0x0203), "05 0204" (Service 05, PID 0x0204), "05 0205" (Service 05, PID 0x0205),
+ * "05 0206" (Service 05, PID 0x0206), "05 0207" (Service 05, PID 0x0207), "05 0208" (Service 05, PID 0x0208),
+ * "05 0209" (Service 05, PID 0x0209), "05 020A" (Service 05, PID 0x020A), "05 020B" (Service 05, PID 0x020B),
+ * "05 020C" (Service 05, PID 0x020C), "05 020D" (Service 05, PID 0x020D), "05 020E" (Service 05, PID 0x020E),
+ * "05 020F" (Service 05, PID 0x020F) and "05 0210" (Service 05, PID 0x0210).</p>
  * <p>Description: <ul>
  * <li>O2 Sensor Monitor Bank 1 Sensor 1 - Lean to rich sensor voltage</li>
  * <li>O2 Sensor Monitor Bank 1 Sensor 2 - Lean to rich sensor voltage</li>
@@ -59,10 +59,11 @@ import javax.script.ScriptException;
  * <tr><th>Min value</th><td>0</td></tr>
  * <tr><th>Max value</th><td>1.275</td></tr>
  * <tr><th>Equation</th> <td><pre>A * 0.005</pre></td></tr>
+ * <tr><th>Class</th>    <td>{@link CalculatedResponse}</td></tr>
  * </table></p>
  *
  * @author MacFJA
- * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Mode_05">Wikipedia</a>
+ * @see <a href="https://en.wikipedia.org/wiki/OBD-II_PIDs#Service_05">Wikipedia</a>
  */
 public enum LeanToRichMonitorCommand implements Command {
     Bank1Sensor1("0201"),

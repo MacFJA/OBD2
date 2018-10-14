@@ -19,29 +19,24 @@
 
 package io.github.macfja.obd2.response;
 
-import io.github.macfja.obd2.Unit;
-
 import javax.script.ScriptException;
 
 /**
+ * <b>DEPRECATED</b>
  * <p>This class is the response of a {@link io.github.macfja.obd2.Command} that return a pressure.</p>
  * <p>Unit: Pascal (Pa) or Kilo Pascal (kPa)</p>
  *
+ * @deprecated Since 1.1.0, replaced by {@link PressureResponse}
  * @author MacFJA
  */
-public class PressureResult extends CalculatedResponse {
-    private final boolean kilo;
+@Deprecated
+public class PressureResult extends PressureResponse {
 
     public PressureResult(byte[] raw, Number calculated, boolean kilo) {
-        super(raw, calculated);
-        this.kilo = kilo;
+        super(raw, calculated, kilo);
     }
 
     public PressureResult(byte[] raw, String equation, boolean kilo) throws ScriptException {
-        this(raw, calculateFromEquation(raw, equation), kilo);
-    }
-
-    public Unit getUnit() {
-        return kilo ? Unit.KiloPascal : Unit.Pascal;
+        super(raw, equation, kilo);
     }
 }
