@@ -112,3 +112,9 @@ Add the dependency in your Maven project:
 Go to the [realase page](https://github.com/MacFJA/OBD2/releases), and download the **jar**.
 
 Next add the **jar** in your project classpath.
+
+### With JitPack
+
+The library is available online for Gradle, Maven, Sbt and Leiningen with the help of [JitPack](https://jitpack.io/).
+
+See installation instruction here: [![](https://jitpack.io/v/MacFJA/OBD2.svg)](https://jitpack.io/#MacFJA/OBD2) (Spoiler: it's easy)
